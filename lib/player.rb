@@ -1,4 +1,4 @@
-class Battle < CouchRest::ExtendedDocument
+class Player < CouchRest::ExtendedDocument
   use_database DB
   
   property :name

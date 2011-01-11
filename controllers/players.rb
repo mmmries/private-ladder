@@ -1,3 +1,3 @@
 get '/' do
-  haml :players
+  haml :players, :locals => {:player_list => Player.all}
 end
