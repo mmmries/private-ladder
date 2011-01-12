@@ -1,6 +1,8 @@
 require 'rubygems'
 require 'couchrest'
 require 'couchrest_extended_document'
+require 'haml'
+require 'sass'
 
 APP_DIR = File.dirname(__FILE__)
 

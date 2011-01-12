@@ -5,6 +5,7 @@ ladder system for a group of friends that want to keep track of their relative
 ranking.
 
 Uses:
+
 +   CouchDB for storage
 +   CouchRest + Extended Model for talking to CouchDB ( https://github.com/couchrest/couchrest https://github.com/couchrest/couchrest_extended_document )
 +   Sinatra for a web interface layer ( http://www.sinatrarb.com )
