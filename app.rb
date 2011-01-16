@@ -2,6 +2,8 @@ require 'rubygems'
 require 'sinatra'
 require 'haml'
 
+set :sessions, true
+
 
 load File.join([File.dirname(__FILE__), 'bootstrap.rb'])
 

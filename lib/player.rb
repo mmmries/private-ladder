@@ -2,15 +2,23 @@ class Player < CouchRest::Model::Base
   use_database DB
   
   property :name, String
-  property :rank, Fixnum, :default => 0
-  property :score, Float, :default => 0.0
   property :email, String
+  property :password, String
   property :receive_notices, TrueClass, :default => true
-  property :stats, PlayerStats
+  property :stats, [PlayerStats]
   timestamps!
   
   view_by :name
   view_by :score
+  view_by :leagues, :map => "
+    function(doc){
+      if ( doc['couchrest-type'] == 'Player' && doc['stats'] ) {
+        for( var i in doc['stats'] ) {
+          emit( doc['stats'][i]['league'] );
+        }
+      }
+    }
+  "
   
   validates_uniqueness_of :name
 end

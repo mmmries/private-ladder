@@ -1,0 +1,24 @@
+!!! XML
+!!!
+%html
+  %head
+    %title= "Private Ladder System"
+    %link{:href => "css/main.css", :media=>"all", :rel=>"stylesheet", :type=>"text/css"}
+    %link{:href => "css/player.css", :media=>"all", :rel=>"stylesheet", :type=>"text/css"}
+  %body
+    .header
+      .quick-nav
+        .menu-item
+          %a{:href => '/'}= "index"
+        .separator= "|"
+        .menu-item
+          %a{:href => '/players'}= "players"
+        .separator= "|"
+        .menu-item
+          %a{:href => '/leagues'}= "leagues"
+        .separator= "|"
+        .menu-item
+          %a{:href => '/register'}= "register"
+        .separator= "|"
+        .menu-item
+          %a{:href => '/login'}= "login"
