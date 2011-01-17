@@ -1,0 +1,15 @@
+=partial(:header)      
+%form{:action => "/login", :method => "POST"}
+  .form-block
+    .form-input
+      %label{:for => "player-name"}= "name"
+      %input{:type => "text", :name => "name", :id => "player-name"}
+    .form-input
+      %label{:for => "player-password"}= "password"
+      %input{:type => "password", :name => "password", :id => "player-password"}
+    .form-submit
+      %input{:type => "submit"}
+
+    
+  
+

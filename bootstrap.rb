@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'sinatra'
+gem 'activemodel', '=3.0.0.rc2'
 require 'couchrest'
 require 'couchrest_model'
 require 'haml'
