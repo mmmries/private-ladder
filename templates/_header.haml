@@ -20,5 +20,11 @@
         .menu-item
           %a{:href => '/register'}= "register"
         .separator= "|"
-        .menu-item
-          %a{:href => '/login'}= "login"
+        - unless session[:login].nil?
+          .menu-item
+            %a{:href => '/logout'}= "logout"
+          .separator= "|"
+          .menu-item= "welcome #{session[:player]["name"]}"
+        - if session[:login].nil?
+          .menu-item
+            %a{:href => '/login'}= "login"
