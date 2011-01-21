@@ -12,3 +12,12 @@ Uses:
 +   Sinatra for a web interface layer ( http://www.sinatrarb.com )
 +   HAML + SCSS for rendering templates ( http://haml-lang.com/, http://sass-lang.com/ )
 +   Pony for sending emails ( http://adam.heroku.com/past/2008/11/2/pony_the_express_way_to_send_email_from_ruby/ )
+
+My Installation:
+
++ rvm
++ Ruby 1.9.2
++ build couchrest_model from github source https://github.com/couchrest/couchrest_model
++ gem install railties -v 3.0.0.rc2
++ gem install activesupport -v 3.0.0.rc2
++ gem install sinatra couchrest sinatra

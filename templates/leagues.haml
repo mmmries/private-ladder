@@ -1,0 +1,5 @@
+=partial(:header)
+%h1= "League List"
+%ul{:id=>"league-list"}
+  - league_list.each do |l|
+    %li= partial(:league, :locals => {:league => l})

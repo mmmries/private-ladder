@@ -1,5 +1,4 @@
 get '/players' do
-  p request
   haml :players, :locals => {:player_list => Player.all}
 end
 
