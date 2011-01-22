@@ -17,7 +17,7 @@ My Installation:
 
 + rvm
 + Ruby 1.9.2
++ gem install sinatra couchrest haml rspec bundler
 + build couchrest_model from github source https://github.com/couchrest/couchrest_model
-+ gem install railties -v 3.0.0.rc2
-+ gem install activesupport -v 3.0.0.rc2
-+ gem install sinatra couchrest sinatra
+  + rake build
+  + gem install pkg/couchrest_model-1.0.0.gem

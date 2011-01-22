@@ -18,5 +18,5 @@ post '/player' do
   p.receive_notices = params[:receives_notices]
   
   p.save
-  redirect '/'
+  redirect '/players'
 end
