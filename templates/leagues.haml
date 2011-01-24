@@ -3,3 +3,16 @@
 %ul{:id=>"league-list"}
   - league_list.each do |l|
     %li= partial(:league, :locals => {:league => l})
+    
+- unless session[:login].nil?
+  %h2= "Add League"
+  %form{:action => "/league", :method => "POST"}
+    .form-block
+      .form-input
+        %label{:for => "league-name"}= "name"
+        %input{:type => "text", :name => "name", :id => "league-name"}
+      .form-input
+        %label{:for => "league-description"}= "description"
+        %textarea{:name => "description", :id => "league-description"}
+      .form-submit
+        %input{:type => "submit"}

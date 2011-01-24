@@ -3,5 +3,7 @@ get '/' do
 end
 
 before do
-  puts session
+  unless session[:login].nil?
+    session[:player] = Player.find(session[:login])
+  end
 end

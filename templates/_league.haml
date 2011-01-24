@@ -1,3 +1,6 @@
 .league
   .name= league.name
-  
+  - if session[:login] && !session[:player].in_league?(league.name)
+    %a{ :href => "/join?lid=#{league["_id"]}" }= "join this league"
+  - if session[:login] && session[:player].in_league?(league.name)
+    %a{ :href => "/leave?lid=#{league["_id"]}" }= "leave this league"

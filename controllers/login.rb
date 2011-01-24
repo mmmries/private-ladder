@@ -7,7 +7,6 @@ post '/login' do
   p = p.first
   if p["password"] == params[:password]
     session[:login] = p["_id"]
-    session[:player] = p
   end
   redirect '/'
 end
