@@ -1,3 +1,19 @@
+/* GLOBAL RULES */
+@mixin rounded{
+    border-radius: 15px;
+    -moz-border-radius: 15px;
+    padding: 5px;
+}
+
+@mixin blank-list{
+    list-style: inside none none;
+    li {
+        padding-top: 10px;
+    }
+}
+
+/* END GLOBAL RULES */
+/* NAVIGATION RULES */
 @mixin inline{
   display: inline;
   padding-left: 5px;
@@ -14,3 +30,32 @@
 .separator{
   @include inline
 }
+
+/* END NAVIGATION RULES */
+/* PLAYER RULES */
+#player-list{
+    @include blank-list;
+}
+
+.player {
+    @include rounded;
+    background: rgba(0, 0, 255, 0.8);
+    max-width: 200px;
+    color: rgba(255,255,255,0.9)
+}
+
+.player .name{
+    text-align: center;
+}
+/* END PLAYER RULES */
+/* LEAGUE RULES */
+#league-list{
+    @include blank-list;
+}
+.league {
+  @include rounded;
+  background: rgba(32,180, 32, 0.9);
+  max-width: 200px;
+  color: rgba(255,255,255,0.9);
+}
+/* ENG LEAGUE RULES */
