@@ -12,6 +12,28 @@
     }
 }
 
+a:link{
+    color: rgb(0,0,0);
+    text-decoration: underline;
+    -webkit-transition-property:color,background-color,padding-left;
+    -webkit-transition-duration:500ms,500ms,500ms;
+}
+a:visited{ @extend a:link; }
+a:active{ @extend a:link; }
+a:hover{
+    color:#333;
+    padding-left:10px
+}
+
+
+a.light:link{
+    @extend a:link;
+    color: rgb(255,255,255);
+}
+a.light:visited{ @extend a.light:link; }
+a.light:active{ @extend a.light:link; }
+a.light:hover{ @extend a:hover; }
+
 /* END GLOBAL RULES */
 /* NAVIGATION RULES */
 @mixin inline{
@@ -59,3 +81,12 @@
   color: rgba(255,255,255,0.9);
 }
 /* ENG LEAGUE RULES */
+
+/* PLAYER STAT RULES */
+.player-stat{
+    @include rounded;
+    background: rgba(0,0,255,0.8);
+    max-width: 200px;
+    color: rgba(255,255,255,0.9);
+}
+/* END PLAYER STAT RULES */

@@ -1,3 +1,4 @@
 .player
-  .name= player.name
+  .name
+    %a.light{:href => "/player/#{player['_id']}"}= player.name
   

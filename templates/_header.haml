@@ -3,7 +3,7 @@
 %html
   %head
     %title= "Private Ladder System"
-    %link{:href => "css/main.css", :media=>"all", :rel=>"stylesheet", :type=>"text/css"}
+    %link{:href => "/css/main.css", :media=>"all", :rel=>"stylesheet", :type=>"text/css"}
   %body
     .header
       .quick-nav
@@ -23,7 +23,9 @@
           .menu-item
             %a{:href => '/logout'}= "logout"
           .separator= "|"
-          .menu-item= "welcome #{session[:player]["name"]}"
+          .menu-item
+            ="welcome "
+            %a{:href => "/player/#{session[:player]['_id']}"}=session[:player]["name"]
         - if session[:login].nil?
           .menu-item
             %a{:href => '/login'}= "login"

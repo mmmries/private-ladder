@@ -2,8 +2,9 @@ get '/players' do
   haml :players, :locals => {:player_list => Player.all}
 end
 
-get '/player' do
-  haml :player_homepage
+get '/player/:uuid' do |uuid|
+  p = Player.find(uuid)
+  haml :player_homepage, :locals => {:player => p}
 end
 
 get '/register' do
