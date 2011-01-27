@@ -1,6 +1,4 @@
-=partial(:header)
 %h1= "#{player.name}"
-- player.stats.each do |stat|
-  .player-stat
-    .title= "league: #{stat.league}"
-    .stats= "#{stat.wins} - #{stat.losses} - #{stat.draws}"
+%ul#league-list
+  - player.stats.each do |stat|
+    %li= partial(:player_stat, :locals => {:player => player, :stat => stat})

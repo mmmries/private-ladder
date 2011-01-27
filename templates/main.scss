@@ -34,6 +34,19 @@ a.light:visited{ @extend a.light:link; }
 a.light:active{ @extend a.light:link; }
 a.light:hover{ @extend a:hover; }
 
+#content{
+  margin:auto;
+  background:rgba(230, 230, 230, 0.95);
+  max-width: 600px;
+  @include rounded;
+  padding: 20px;
+}
+
+#header{
+  @extend #content;
+  margin-bottom:15px;
+}
+
 /* END GLOBAL RULES */
 /* NAVIGATION RULES */
 @mixin inline{
