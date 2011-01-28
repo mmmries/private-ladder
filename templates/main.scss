@@ -12,6 +12,19 @@
     }
 }
 
+.corner-action{
+    position:absolute;
+    top: 5px;
+    right: 5px;
+    width: 24px;
+    height: 24px;
+}
+
+@mixin corner-action-container{
+    min-height: 36px;
+    min-width: 128px;
+}
+
 a:link{
     color: rgb(0,0,0);
     text-decoration: underline;
@@ -89,9 +102,14 @@ a.light:hover{ @extend a:hover; }
 }
 .league {
   @include rounded;
+  @include corner-action-container;
   background: rgba(32,180, 32, 0.9);
   max-width: 200px;
   color: rgba(255,255,255,0.9);
+  position:relative;
+}
+.league .name{
+    text-align: center;
 }
 /* ENG LEAGUE RULES */
 

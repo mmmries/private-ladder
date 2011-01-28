@@ -1,6 +1,8 @@
 .league
-  .name= league.name
+  %a.light{:href => "/league/#{league['_id']}"}= league.name
   - if session[:login] && !session[:player].in_league?(league.name)
-    %a{ :href => "/join?lid=#{league["_id"]}" }= "join this league"
+    %a{ :href => "/join?lid=#{league["_id"]}"}
+      %img.corner-action{:src => "/icons/48/111.png", :alt => "join this league", :title => "join this league"}
   - if session[:login] && session[:player].in_league?(league.name)
-    %a{ :href => "/leave?lid=#{league["_id"]}" }= "leave this league"
+    %a{ :href => "/leave?lid=#{league["_id"]}"}
+      %img.corner-action{:src => "/icons/48/109.png", :alt =>"leave this league", :title => "leave this league"}

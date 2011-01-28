@@ -2,6 +2,12 @@ get '/leagues' do
   haml :leagues, :locals => {:league_list => League.all}
 end
 
+get '/league/:uuid' do |uuid|
+  l = League.find(uuid)
+  ps = Player.by_leagues :key => l.name
+  haml :league_homepage, :locals => {:league => l, :players => ps}
+end
+
 post '/league' do
   l = League.new(params)
   

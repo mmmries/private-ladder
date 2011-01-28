@@ -9,12 +9,11 @@ class Player < CouchRest::Model::Base
   timestamps!
   
   view_by :name
-  view_by :score
   view_by :leagues, :map => "
     function(doc){
       if ( doc['couchrest-type'] == 'Player' && doc['stats'] ) {
         for( var i in doc['stats'] ) {
-          emit( [doc['stats'][i]['league'], doc['name']], doc );
+          emit( doc['stats'][i]['league'], doc );
         }
       }
     }
@@ -25,6 +24,8 @@ class Player < CouchRest::Model::Base
   
   ##custom functions
   def in_league?(lname)
-    !Player.by_leagues(:key => [lname, name]).empty?
+    stats.any? do |stat|
+      stat.league == lname
+    end
   end
 end
