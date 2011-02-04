@@ -12,12 +12,15 @@
     }
 }
 
-.corner-action{
+.corner-action-box{
     position:absolute;
     top: 5px;
     right: 5px;
-    width: 24px;
-    height: 24px;
+
+    .corner-action{
+        width: 24px;
+        height: 24px;
+    }
 }
 
 @mixin corner-action-container{
@@ -46,6 +49,11 @@ a.light:link{
 a.light:visited{ @extend a.light:link; }
 a.light:active{ @extend a.light:link; }
 a.light:hover{ @extend a:hover; }
+
+a.icon{
+    @extend a:link;
+    text-decoration: none;
+}
 
 #content{
   margin:auto;
