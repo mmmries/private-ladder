@@ -1,7 +1,7 @@
 class Participant < Hash
   include CouchRest::Model::CastedModel
   
-  property :player, String
+  property :player_id, String
   property :result, String
   property :points, Float
   
