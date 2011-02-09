@@ -1,10 +1,10 @@
 .league
   %a.light{:href => "/league/#{league['_id']}"}= league.name
-  - if session[:login] && !session[:player].in_league?(league.name)
+  - if session[:login] && !session[:player].in_league?(league["_id"])
     .corner-action-box
       %a.icon{ :href => "/join?lid=#{league["_id"]}"}
         %img.corner-action{:src => "/icons/48/111.png", :alt => "join this league", :title => "join this league"}
-  - if session[:login] && session[:player].in_league?(league.name)
+  - if session[:login] && session[:player].in_league?(league["_id"])
     .corner-action-box
       %a.icon{ :href => "/add-game?lid=#{league["_id"]}"}
         %img.corner-action{:src => "/icons/48/8.png", :alt => "add a game", :title => "add a game"}

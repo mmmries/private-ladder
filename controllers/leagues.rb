@@ -4,7 +4,7 @@ end
 
 get '/league/:uuid' do |uuid|
   l = League.find(uuid)
-  ps = Player.by_leagues :key => l.name
+  ps = Player.by_leagues :key => l["_id"]
   haml :league_homepage, :locals => {:league => l, :players => ps}
 end
 
@@ -18,14 +18,7 @@ end
 get '/join' do
   p = session[:player]
   l = League.find(params[:lid])
-  ps = PlayerStats.new(
-    :total_games => 0,
-    :wins => 0,
-    :losses => 0,
-    :draws => 0,
-    :league => l.name
-  )
-  p.stats << ps
+  p.leagues << l["_id"]
   p.save
   
   redirect '/leagues'
@@ -34,8 +27,8 @@ end
 get '/leave' do
   p = session[:player]
   l = League.find(params[:lid])
-  p.stats.delete_if do |st|
-    st.league == l["name"]
+  p.leagues.delete_if do |st|
+    st == l["_id"]
   end
   p.save
   

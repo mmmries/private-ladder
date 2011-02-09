@@ -5,27 +5,25 @@ class Player < CouchRest::Model::Base
   property :email, String
   property :password, String
   property :receive_notices, TrueClass, :default => true
-  property :stats, [PlayerStats]
+  property :leagues, [String]
   timestamps!
   
   view_by :name
   view_by :leagues, :map => "
-    function(doc){
-      if ( doc['couchrest-type'] == 'Player' && doc['stats'] ) {
-        for( var i in doc['stats'] ) {
-          emit( doc['stats'][i]['league'], doc );
-        }
+  function(doc){
+    if( doc['couchrest-type'] == 'Player' && doc['leagues'] ) {
+      for( var i in doc['leagues'] ) {
+        emit(doc['leagues'][i], doc);
       }
     }
+  }
   "
   
   validates_uniqueness_of :name
   
   
   ##custom functions
-  def in_league?(lname)
-    stats.any? do |stat|
-      stat.league == lname
-    end
+  def in_league?(league_id)
+    !leagues.index(league_id).nil?
   end
 end
