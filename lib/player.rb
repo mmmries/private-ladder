@@ -6,9 +6,21 @@ class Player < CouchRest::Model::Base
   property :password, String
   property :receive_notices, TrueClass, :default => true
   property :leagues, [String]
+  property :status, String, :default => "active"
   timestamps!
   
-  view_by :name
+  view_by :name, :map => "
+  function(doc){
+    if ( doc['couchrest-type'] == 'Player' ) {
+      if( !doc.status ) {
+        doc.status = 'active';
+      }
+      if ( doc.status == 'active' ) {
+        emit(doc.name, null);
+      }
+    }
+  }
+  "
   view_by :leagues, :map => "
   function(doc){
     if( doc['couchrest-type'] == 'Player' && doc['leagues'] ) {
@@ -20,6 +32,10 @@ class Player < CouchRest::Model::Base
   "
   
   validates_uniqueness_of :name
+  
+  def validate
+    errors.add :status, "a player must have a valid status" if ["active", "inactive"].index(status).nil?
+  end
   
   
   ##custom functions

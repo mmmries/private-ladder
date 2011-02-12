@@ -14,6 +14,11 @@ class Game < CouchRest::Model::Base
         }
       }
     }
+  ",
+  :reduce => "
+    function(keys, values, rereduce) {
+      sum(values);
+    }
   "
   
   def validate
