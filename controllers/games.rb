@@ -1,5 +1,6 @@
 get '/add-game' do
-  haml :add_game, :locals => {:league_id => params[:lid], :players => Player.by_leagues(:key => params[:lid])}
+  l = League.find(params[:lid])
+  haml :add_game, :locals => {:league_id => params[:lid], :players => Player.by_leagues(:key => l.name)}
 end
 
 post '/add-game' do
