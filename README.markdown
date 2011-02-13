@@ -21,3 +21,9 @@ My Installation:
 + build couchrest_model from github source https://github.com/couchrest/couchrest_model
   + rake build
   + gem install pkg/couchrest_model-1.0.0.gem
+
+Next Improvements
+
++ user self-edit enable
++ gravatar support
++ better game entering interface
