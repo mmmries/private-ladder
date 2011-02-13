@@ -1,4 +1,6 @@
 .player
   .name
     %a.light{:href => "/player/#{player['_id']}"}= player.name
+    - unless player.score.nil?
+      .player-score= "score: #{player.score}"
   

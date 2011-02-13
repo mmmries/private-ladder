@@ -4,7 +4,7 @@ end
 
 get '/league/:uuid' do |uuid|
   l = League.find(uuid)
-  ps = Player.by_leagues :key => l["_id"]
+  ps = l.get_players_in_point_order
   haml :league_homepage, :locals => {:league => l, :players => ps}
 end
 

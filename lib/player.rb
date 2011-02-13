@@ -1,5 +1,8 @@
 class Player < CouchRest::Model::Base
   use_database DB
+
+  #note that this attribute is not a couchdb stored value, it is just for convenience  
+  attr_accessor :score
   
   property :name, String
   property :email, String
@@ -23,7 +26,10 @@ class Player < CouchRest::Model::Base
   "
   view_by :leagues, :map => "
   function(doc){
-    if( doc['couchrest-type'] == 'Player' && doc['leagues'] ) {
+    if( !doc.status ) {
+      doc.status = 'active';
+    }
+    if( doc['couchrest-type'] == 'Player' && doc['leagues'] && doc.status == 'active' ) {
       for( var i in doc['leagues'] ) {
         emit(doc['leagues'][i], doc);
       }

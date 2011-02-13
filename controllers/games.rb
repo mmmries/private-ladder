@@ -7,7 +7,7 @@ post '/add-game' do
   g = Game.new(params)
   g.participants.each do |part|
     part.points = 1.0 if part.result == "win"
-    part.points = -1.0 if part.result == "loss"
+    part.points = -0.5 if part.result == "loss"
   end
   g.save
   redirect '/add-game?lid='+params[:league_id]
