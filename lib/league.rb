@@ -1,6 +1,9 @@
 class League < CouchRest::Model::Base
   use_database DB
   
+  #note that this is not a value stored in couchdb, it is a convenience function
+  attr_accessor :score
+  
   property :name, String
   property :description, String
   timestamps!

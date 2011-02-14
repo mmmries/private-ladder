@@ -48,4 +48,20 @@ class Player < CouchRest::Model::Base
   def in_league?(league_id)
     !leagues.index(league_id).nil?
   end
+  
+  def get_league_list
+    if @league_list.nil? then
+      @league_list = leagues.map do |lid|
+        l = League.find(lid)
+        tmp = DB.view('Game/by_points', :key => [lid, self["_id"]])
+        if tmp["rows"].count == 1 then
+          l.score = tmp["rows"].first["value"]
+        else
+          l.score = 0
+        end
+        l
+      end
+    end
+    @league_list
+  end
 end
