@@ -1,0 +1,14 @@
+%h1= "Listing players"
+
+%table
+  %tr
+    %th= "name"
+    %th
+    %th
+    %th
+  -@players.each do |player|
+    %tr
+      %td= player.name
+      %td= link_to 'Show', player
+      %td= link_to 'Edit', edit_player_path(player)
+      %td= link_to 'Destroy', player, :confirm => 'Are you sure?', :method => :delete
