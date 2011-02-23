@@ -1,4 +1,6 @@
 Ladder::Application.routes.draw do
+  resources :leagues
+
   resources :players
 
   # The priority is based upon order of creation:

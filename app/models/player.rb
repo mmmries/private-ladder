@@ -1,6 +1,6 @@
 class Player < CouchRest::Model::Base
-  #connect to the DB
-  use_database COUCHDB_DATABASE
+  #select the database to be used
+  use_database CouchServer.default_database
   
   #note that this attribute is not a couchdb stored value, it is just for convenience  
   attr_accessor :score
