@@ -6,7 +6,8 @@ gem 'rails', '3.0.1'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'haml'
-gem 'couchrest_model'
+gem 'couchrest_model', '>= 1.0.0'
+gem 'jquery-rails', '>= 0.2.6'
 
 # Use unicorn as the web server
 # gem 'unicorn'

@@ -45,6 +45,9 @@ GEM
       abstract (>= 1.0.0)
     haml (3.0.25)
     i18n (0.4.2)
+    jquery-rails (0.2.7)
+      rails (~> 3.0)
+      thor (~> 0.14.4)
     json (1.5.1)
     mail (2.2.15)
       activesupport (>= 2.3.6)
@@ -83,6 +86,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  couchrest_model
+  couchrest_model (>= 1.0.0)
   haml
+  jquery-rails (>= 0.2.6)
   rails (= 3.0.1)
