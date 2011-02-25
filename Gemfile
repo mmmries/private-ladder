@@ -8,6 +8,7 @@ gem 'rails', '3.0.1'
 gem 'haml'
 gem 'couchrest_model', '>= 1.0.0'
 gem 'jquery-rails', '>= 0.2.6'
+gem 'memcache-client', '>= 1.8.5'
 
 # Use unicorn as the web server
 # gem 'unicorn'
