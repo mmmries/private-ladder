@@ -36,13 +36,9 @@ My Installation:
 
 + ubuntu 10.10
 + rvm
-+ Ruby 1.9.2
-+ installing the couchrest_model (see below) should automatically install rails 3.0.1 if you have another rails version already installed consider using a separate gemset
-  + rvm gemset create ladder
-  + rvm gemset use
-+ gem install couchrest haml rspec bundler
-+ build couchrest_model from github source https://github.com/couchrest/couchrest_model
-  + git clone https://github.com/couchrest/couchrest_model /tmp/couchrest_model
-  + cd /tmp/couchrest_model
-  + rake build
-  + gem install pkg/couchrest_model-1.0.0.gem
++ rvm install ruby-1.9.2
++ rvm use ruby-1.9.2
++ rvm gemset create ladder
++ rvm gemset use ladder
++ gem install rspec bundler
++ bundle install

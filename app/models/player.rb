@@ -65,4 +65,8 @@ class Player < CouchRest::Model::Base
     end
     @league_list
   end
+  
+  def is_admin?
+    !self["is_admin"].nil?
+  end
 end

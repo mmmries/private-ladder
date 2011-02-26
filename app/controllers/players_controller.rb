@@ -3,6 +3,7 @@ class PlayersController < ApplicationController
   # GET /players.xml
   def index
     @players = Player.all
+    @pageviews = session[:pageviews]
 
     respond_to do |format|
       format.html # index.html.erb

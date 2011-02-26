@@ -1,4 +1,6 @@
 Ladder::Application.routes.draw do
+  resources :sessions
+
   resources :leagues
 
   resources :players

@@ -1,3 +1,14 @@
+GIT
+  remote: https://github.com/couchrest/couchrest_model.git
+  revision: 53b052f631646256480293cf20ad9ebd90fecb21
+  specs:
+    couchrest_model (1.0.0)
+      activemodel (~> 3.0.0)
+      couchrest (~> 1.0.1)
+      mime-types (~> 1.15)
+      railties (~> 3.0.0)
+      tzinfo (~> 0.3.22)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -35,12 +46,6 @@ GEM
       json (>= 1.4.6)
       mime-types (>= 1.15)
       rest-client (>= 1.5.1)
-    couchrest_model (1.0.0)
-      activemodel (~> 3.0.0)
-      couchrest (~> 1.0.1)
-      mime-types (~> 1.15)
-      railties (~> 3.0.0)
-      tzinfo (~> 0.3.22)
     erubis (2.6.6)
       abstract (>= 1.0.0)
     haml (3.0.25)
@@ -87,7 +92,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  couchrest_model (>= 1.0.0)
+  couchrest_model (>= 1.0.0)!
   haml
   jquery-rails (>= 0.2.6)
   memcache-client (>= 1.8.5)
