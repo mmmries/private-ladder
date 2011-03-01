@@ -67,6 +67,7 @@ class Player < CouchRest::Model::Base
   end
   
   def is_admin?
+    ActionController::Base.logger.info "checking if admin #{self.inspect}"
     !self["is_admin"].nil?
   end
 end

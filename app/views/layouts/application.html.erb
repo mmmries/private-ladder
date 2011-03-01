@@ -24,8 +24,9 @@
       <li><a href="#">About Us</a></li>
       <li><a href="#">Products</a></li>
       <li><a href="#">Services</a></li>
-      <li><a href="#">Contact Us</a></li>
-      <% logger.info "get_login currently returns #{get_login.inspect}" %>
+      <% if is_admin? then %>
+        <li><a href="/admin">Admin</a></li>
+      <% end %>
       <% if get_login.nil? %>
         <li><%= link_to "login", new_session_path %></li>
       <% else %>

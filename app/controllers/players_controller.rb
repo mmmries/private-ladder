@@ -2,8 +2,10 @@ class PlayersController < ApplicationController
   # GET /players
   # GET /players.xml
   def index
+    unless is_admin? then
+      raise "only admins can access the full player list"
+    end
     @players = Player.all
-    @pageviews = session[:pageviews]
 
     respond_to do |format|
       format.html # index.html.erb
