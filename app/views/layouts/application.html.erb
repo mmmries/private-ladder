@@ -1,14 +1,95 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <title>Ladder</title>
   <%= stylesheet_link_tag :all %>
   <%= javascript_include_tag :defaults %>
   <%= csrf_meta_tag %>
 </head>
 <body>
-
-<%= yield %>
-
+<div id="header">
+  <div id="logo">
+    <h1><a href="/">Ladder</a></h1>
+    <% if get_login.nil? %>
+      <p>All about bragging rights</p>
+    <% else %>
+      <p>welcome <%= get_login.name %></p>
+    <% end %>
+  </div>
+  <!-- end #logo -->
+  <div id="menu">
+    <ul>
+      <li class="first"><a href="/">Home</a></li>
+      <li><a href="#">About Us</a></li>
+      <li><a href="#">Products</a></li>
+      <li><a href="#">Services</a></li>
+      <li><a href="#">Contact Us</a></li>
+      <% logger.info "get_login currently returns #{get_login.inspect}" %>
+      <% if get_login.nil? %>
+        <li><%= link_to "login", new_session_path %></li>
+      <% else %>
+        <li><%= link_to "logout", session_path(get_login), :method => "delete" %></li>
+      <% end %>
+    </ul>
+  </div>
+  <!-- end #menu -->
+</div>
+<!-- end #header -->
+<div id="page">
+  <div id="content">
+    <%= yield %>
+  </div>
+  <!-- end #content -->
+  <% if respond_to? :sidebar then %>
+    <div id="sidebar">
+      <div id="sidebar-bgtop"></div>
+      <div id="sidebar-content">
+        <ul>
+          <li id="search">
+            <h2>Search</h2>
+            <form method="get" action="">
+              <fieldset>
+              <input type="text" id="s" name="s" value="" />
+              <input type="submit" id="x" value="Search" />
+              </fieldset>
+            </form>   
+          </li>
+          <li>
+            <h2>Lorem Ipsum</h2>
+            <ul>
+              <li><a href="#">Fusce dui neque fringilla</a></li>
+              <li><a href="#">Eget tempor eget nonummy</a></li>
+              <li><a href="#">Magna lacus bibendum mauris</a></li>
+              <li><a href="#">Nec metus sed donec</a></li>
+              <li><a href="#">Magna lacus bibendum mauris</a></li>
+              <li><a href="#">Velit semper nisi molestie</a></li>
+              <li><a href="#">Eget tempor eget nonummy</a></li>
+            </ul>
+          </li>
+          <li>
+            <h2>Volutpat Dolore</h2>
+            <ul>
+              <li><a href="#">Nec metus sed donec</a></li>
+              <li><a href="#">Magna lacus bibendum mauris</a></li>
+              <li><a href="#">Velit semper nisi molestie</a></li>
+              <li><a href="#">Eget tempor eget nonummy</a></li>
+              <li><a href="#">Nec metus sed donec</a></li>
+              <li><a href="#">Magna lacus bibendum mauris</a></li>
+              <li><a href="#">Velit semper nisi molestie</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div id="sidebar-bgbtm"></div>
+    </div>
+    <!-- end #sidebar -->
+  <% end %>
+</div>
+<!-- end #page -->
+<div id="footer">
+  <p>This site is awesome ~the internet</p>
+</div>
+<!-- end #footer -->
 </body>
 </html>
