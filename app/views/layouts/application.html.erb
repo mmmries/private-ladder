@@ -28,9 +28,9 @@
         <li><a href="/admin">Admin</a></li>
       <% end %>
       <% if get_login.nil? %>
-        <li><%= link_to "login", new_session_path %></li>
+        <li><%= link_to "login", login_path %></li>
       <% else %>
-        <li><%= link_to "logout", session_path(get_login), :method => "delete" %></li>
+        <li><%= link_to "logout", logout_path, :method => 'delete' %></li>
       <% end %>
     </ul>
   </div>
