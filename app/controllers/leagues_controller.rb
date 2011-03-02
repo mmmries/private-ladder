@@ -34,6 +34,9 @@ class LeaguesController < ApplicationController
 
   # GET /leagues/1/edit
   def edit
+    unless is_admin? then
+      raise 'Only admins can edit leagues'
+    end
     @league = League.find(params[:id])
   end
 
@@ -56,6 +59,9 @@ class LeaguesController < ApplicationController
   # PUT /leagues/1
   # PUT /leagues/1.xml
   def update
+    unless is_admin? then
+      raise 'admins only'
+    end
     @league = League.find(params[:id])
 
     respond_to do |format|
@@ -72,6 +78,9 @@ class LeaguesController < ApplicationController
   # DELETE /leagues/1
   # DELETE /leagues/1.xml
   def destroy
+    unless is_admin? then
+      raise 'admins only'
+    end
     @league = League.find(params[:id])
     @league.destroy
 

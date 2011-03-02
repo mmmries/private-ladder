@@ -5,8 +5,10 @@
     <th>Name</th>
     <th>Description</th>
     <th></th>
-    <th></th>
-    <th></th>
+    <% if is_admin? then %>
+      <th></th>
+      <th></th>
+    <% end %>
   </tr>
 
 <% @leagues.each do |league| %>
@@ -14,8 +16,10 @@
     <td><%= league.name %></td>
     <td><%= league.description %></td>
     <td><%= link_to 'Show', league %></td>
-    <td><%= link_to 'Edit', edit_league_path(league) %></td>
-    <td><%= link_to 'Destroy', league, :confirm => 'Are you sure?', :method => :delete %></td>
+    <% if is_admin? then %>
+      <td><%= link_to 'Edit', edit_league_path(league) %></td>
+      <td><%= link_to 'Destroy', league, :confirm => 'Are you sure?', :method => :delete %></td>
+    <% end %>
   </tr>
 <% end %>
 </table>

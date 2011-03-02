@@ -19,7 +19,7 @@ class SessionsController < ApplicationController
       end
     else
       session[:login] = res.first["_id"]
-      redirect_to :controller => "players", :action => "index"
+      redirect_to :controller => "leagues", :action => "index"
     end
   end
 
@@ -28,6 +28,6 @@ class SessionsController < ApplicationController
     unless session[:login].nil? then
       session[:login] = nil
     end
-    redirect_to :controller => "players", :action => "index"
+    redirect_to :controller => "leagues", :action => "index"
   end
 end
