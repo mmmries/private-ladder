@@ -14,7 +14,7 @@ class League < CouchRest::Model::Base
       #puts "querying the by_points view with these aparams #{{:group_level => 2, :start_key => [self["_id"], nil], :end_key => [self["_id"], {}]}}"
       
       ##get a list of how many points each player has in this league
-      tmp = DB.view('Game/by_points', :group_level => 2, :startkey => [self["_id"], nil], :endkey => [self["_id"], {}])
+      tmp = CouchServer.default_database.view('Game/by_points', :group_level => 2, :startkey => [self["_id"], nil], :endkey => [self["_id"], {}])
       player_point_map = tmp["rows"].to_hash_values { |row|  row["key"].last }
       
       ##get a list of all the players in this league

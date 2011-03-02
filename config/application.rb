@@ -12,6 +12,21 @@ require "rails/test_unit/railtie"
 # you've limited to :test, :development, or :production.
 Bundler.require(:default, Rails.env) if defined?(Bundler)
 
+## monkey patch a few nice things in
+class Array
+  def to_hash_keys(&block)
+    Hash[*self.collect { |v|
+      [v, block.call(v)]
+    }.flatten]
+  end
+
+  def to_hash_values(&block)
+    Hash[*self.collect { |v|
+      [block.call(v), v]
+    }.flatten]
+  end
+end
+
 module Ladder
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.

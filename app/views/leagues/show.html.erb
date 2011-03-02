@@ -1,15 +1,16 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Name:</b>
-  <%= @league.name %>
-</p>
-
+<h1><%= @league.name %></h1>
 <p>
   <b>Description:</b>
   <%= @league.description %>
 </p>
 
+<% @league.get_players_in_point_order.each do |player| %>
+  <div class="player">
+    name: <%= player.name %>
+    points: <%= player.score %>
+  </div>
+<% end %>
 
-<%= link_to 'Edit', edit_league_path(@league) %> |
 <%= link_to 'Back', leagues_path %>

@@ -3,7 +3,6 @@
 <table>
   <tr>
     <th>Name</th>
-    <th>Description</th>
     <th></th>
     <% if is_admin? then %>
       <th></th>
@@ -14,7 +13,6 @@
 <% @leagues.each do |league| %>
   <tr>
     <td><%= league.name %></td>
-    <td><%= league.description %></td>
     <td><%= link_to 'Show', league %></td>
     <% if is_admin? then %>
       <td><%= link_to 'Edit', edit_league_path(league) %></td>
