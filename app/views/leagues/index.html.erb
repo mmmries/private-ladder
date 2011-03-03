@@ -3,7 +3,9 @@
 <table>
   <tr>
     <th>Name</th>
-    <th></th>
+    <% if !get_login.nil? then %>
+      <th></th>
+    <% end %>
     <% if is_admin? then %>
       <th></th>
       <th></th>
@@ -12,8 +14,14 @@
 
 <% @leagues.each do |league| %>
   <tr>
-    <td><%= league.name %></td>
-    <td><%= link_to 'Show', league %></td>
+    <td><%= link_to league.name, league %></td>
+    <% if !get_login.nil?  then %>
+      <% if get_login.in_league?(league["_id"]) then %>
+        <td><%= link_to "report game", new_game_path %></td>
+      <% else %>
+        <td><%= link_to "join league", "/leagues/#{league["_id"]}/join" %></td>
+      <% end %>
+    <% end %>
     <% if is_admin? then %>
       <td><%= link_to 'Edit', edit_league_path(league) %></td>
       <td><%= link_to 'Destroy', league, :confirm => 'Are you sure?', :method => :delete %></td>
