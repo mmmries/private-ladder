@@ -7,10 +7,7 @@
 </p>
 
 <% @league.get_players_in_point_order.each do |player| %>
-  <div class="player">
-    name: <%= player.name %>
-    points: <%= player.score %>
-  </div>
+  <%= render :partial => "player", :locals => { :player => player } %>
 <% end %>
 
 <%= link_to 'Back', leagues_path %>

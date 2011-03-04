@@ -5,6 +5,7 @@
     <th>Name</th>
     <% if !get_login.nil? then %>
       <th></th>
+      <th></th>
     <% end %>
     <% if is_admin? then %>
       <th></th>
@@ -18,7 +19,9 @@
     <% if !get_login.nil?  then %>
       <% if get_login.in_league?(league["_id"]) then %>
         <td><%= link_to "report game", new_game_path %></td>
+        <td><%= link_to "leave league", "/leagues/#{league["_id"]}/leave" %></td>
       <% else %>
+        <td></td>
         <td><%= link_to "join league", "/leagues/#{league["_id"]}/join" %></td>
       <% end %>
     <% end %>
@@ -32,4 +35,6 @@
 
 <br />
 
-<%= link_to 'New League', new_league_path %>
+<% unless get_login.nil? then %>
+  <%= link_to 'New League', new_league_path %>
+<% end %>

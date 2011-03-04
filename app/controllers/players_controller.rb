@@ -2,9 +2,6 @@ class PlayersController < ApplicationController
   # GET /players
   # GET /players.xml
   def index
-    unless is_admin? then
-      raise "only admins can access the full player list"
-    end
     @players = Player.all
 
     respond_to do |format|
@@ -27,6 +24,9 @@ class PlayersController < ApplicationController
   # GET /players/new
   # GET /players/new.xml
   def new
+    unless get_login.nil? then
+      raise 'logged in users cannot add additional players'
+    end
     @player = Player.new
 
     respond_to do |format|

@@ -1,13 +1,13 @@
 %h1= "Listing players"
 %table
-  %tr
-    %th= "name"
-    %th
-    %th
-    %th
   -@players.each do |player|
     %tr
-      %td= player.name
-      %td= link_to 'Show', player
-      %td= link_to 'Edit', edit_player_path(player)
-      %td= link_to 'Destroy', player, :confirm => 'Are you sure?', :method => :delete
+      %td= player.gravatar_img.html_safe
+      %td
+        %strong= player.name
+      %td= link_to 'Show', player, :class => "magnify"
+      - if is_admin?
+        %td= link_to 'Edit', edit_player_path(player), :class => "magnify"
+        %td= link_to 'Destroy', player, :confirm => 'Are you sure?', :method => :delete, :class => "magnify"
+
+.help= "Don't see an avatar next to your name?  Check out gravatar.com to check out how you can make an avatar that follows your email address."

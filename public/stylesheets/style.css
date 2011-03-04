@@ -28,15 +28,6 @@ p, ol, ul {
 	line-height: 160%;
 }
 
-a {
-	color: #175500;
-}
-
-a:hover {
-	text-decoration: none;
-	color: #FF0000;
-}
-
 a img {
 	border: none;
 }
@@ -244,4 +235,16 @@ a img {
 
 #footer a {
 	color: #FFFFFF;
+}
+
+/* player divs */
+.player .gravatar{
+	float:left;
+	margin-bottom: 10px;
+	margin-right: 5px;
+}
+.player{
+	clear:left;
+	padding-bottom: 7px;
+	min-height: 50px;
 }

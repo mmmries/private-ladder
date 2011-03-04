@@ -28,6 +28,7 @@
       <% end %>
       <% if get_login.nil? %>
         <li><%= link_to "login", login_path %></li>
+        <li><%= link_to "register", new_player_path %>
       <% else %>
         <li><%= link_to "logout", logout_path, :method => 'delete' %></li>
       <% end %>

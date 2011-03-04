@@ -24,6 +24,9 @@ class LeaguesController < ApplicationController
   # GET /leagues/new
   # GET /leagues/new.xml
   def new
+    if get_login.nil? then
+      raise 'only logged in users can create new leagues'
+    end
     @league = League.new
 
     respond_to do |format|
@@ -43,6 +46,10 @@ class LeaguesController < ApplicationController
   # POST /leagues
   # POST /leagues.xml
   def create
+    if get_login.nil? then
+      raise 'only logged in users can create new leagues'
+    end
+    
     @league = League.new(params[:league])
 
     respond_to do |format|
@@ -88,5 +95,49 @@ class LeaguesController < ApplicationController
       format.html { redirect_to(leagues_url) }
       format.xml  { head :ok }
     end
+  end
+  
+  ## GET /leagues/:id/join
+  def join
+    if get_login.nil? then
+      raise 'only logged in users can join leagues'
+    end
+    
+    league = League.find(params[:id])
+    if league.nil? then
+      raise 'non existent league'
+    end
+    
+    if get_login.in_league?(league["_id"]) then
+      raise "you are already in the #{league.name} league"
+    end
+    
+    get_login.leagues << league["_id"]
+    get_login.save!
+    
+    redirect_to :controller => "leagues", :action => "index"
+  end
+  
+  ## GET /leagues/:id/join
+  def leave
+    if get_login.nil? then
+      raise 'only logged in users can leave leagues'
+    end
+    
+    league = League.find(params[:id])
+    if league.nil? then
+      raise 'non existent league'
+    end
+    
+    unless get_login.in_league?(league["_id"]) then
+      raise "you are not in the #{league.name} league"
+    end
+    
+    get_login.leagues.delete_if do |lid|
+      lid == league["_id"]
+    end
+    get_login.save!
+    
+    redirect_to :controller => "leagues", :action => "index"
   end
 end

@@ -27,10 +27,12 @@
     <%= f.label :receive_notices %><br />
     <%= f.check_box :receive_notices %>
   </div>
-  <div class="field">
-    <%= f.label :status %><br />
-    <%= f.text_field :status %>
-  </div>
+  <% if is_admin? then %>
+    <div class="field">
+      <%= f.label :status %><br />
+      <%= f.text_field :status %>
+    </div>
+  <% end %>
   <div class="actions">
     <%= f.submit %>
   </div>

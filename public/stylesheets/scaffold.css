@@ -12,9 +12,70 @@ pre {
   font-size: 11px;
 }
 
-a { color: #000; }
-a:visited { color: #666; }
-a:hover { color: #fff; background-color:#000; }
+a:link{
+  color: rgb(0,0,0);
+  text-decoration: underline;
+  -webkit-transition: color 1s ease-in;
+  -moz-transition: color 1s ease-in;
+  -o-transition: color 1s ease-in;
+  transition: color 1s ease-in;
+}
+a:visited{
+  color: rgb(0,0,0);
+  text-decoration: underline;
+}
+a:active{
+  color: rgb(0,0,0);
+  text-decoration: underline;
+}
+
+a:hover{
+  text-decoration: none;
+  color:#333;
+  -webkit-transition: color 1s ease-in;
+  -moz-transition: color 1s ease-in;
+  -o-transition: color 1s ease-in;
+  transition: color 1s ease-in;
+}
+
+
+a.light:link{
+  text-decoration: underline;
+  color: rgb(255,255,255);
+  -webkit-transition: color 1s ease-in;
+  -moz-transition: color 1s ease-in;
+  -o-transition: color 1s ease-in;
+  transition: color 1s ease-in;
+}
+
+a.light:visited{
+  text-decoration: underline;
+  color: rgb(255,255,255);
+}
+
+a.light:active{
+  text-decoration: underline;
+  color: rgb(255,255,255);
+}
+a.light:hover{
+  text-decoration: none;
+  color:#333;
+  -webkit-transition: color 1s ease-in;
+  -moz-transition: color 1s ease-in;
+  -o-transition: color 1s ease-in;
+  transition: color 1s ease-in;
+}
+
+.magnify:hover {
+  font-size: 125%;
+  -webkit-transition: font-size 500ms ease-in;
+  -mox-transition: font-size 500ms ease-in;
+  -o-transition: font-size 500ms ease-in;
+  transition: font-size 500ms ease-in;
+}
+.magnify{
+  padding-right: 5px;
+}
 
 div.field, div.actions {
   margin-bottom: 10px;

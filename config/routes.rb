@@ -1,12 +1,17 @@
 Ladder::Application.routes.draw do
+  ## game controls
   resources :games
 
-  resources :sessions
-
+  ##league controls
   resources :leagues
+  match '/leagues/:id/join' => 'leagues#join'
+  match '/leagues/:id/leave' => 'leagues#leave'
 
+  ##player controls
   resources :players
   
+  ## session controls
+  resources :sessions
   match 'login' => 'sessions#new', :as => :login
   delete 'logout' => 'sessions#destroy', :as => :logout
 
