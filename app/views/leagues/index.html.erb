@@ -1,0 +1,40 @@
+<h1>Listing leagues</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <% if !get_login.nil? then %>
+      <th></th>
+      <th></th>
+    <% end %>
+    <% if is_admin? then %>
+      <th></th>
+      <th></th>
+    <% end %>
+  </tr>
+
+<% @leagues.each do |league| %>
+  <tr>
+    <td><%= link_to league.name, league %></td>
+    <% if !get_login.nil?  then %>
+      <% if get_login.in_league?(league["_id"]) then %>
+        <td><%= link_to "report game", add_game_path(league) %></td>
+        <td><%= link_to "leave league", leave_league_path(league) %></td>
+      <% else %>
+        <td></td>
+        <td><%= link_to "join league", join_league_path(league) %></td>
+      <% end %>
+    <% end %>
+    <% if is_admin? then %>
+      <td><%= link_to 'Edit', edit_league_path(league) %></td>
+      <td><%= link_to 'Destroy', league, :confirm => 'Are you sure?', :method => :delete %></td>
+    <% end %>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<% unless get_login.nil? then %>
+  <%= link_to 'New League', new_league_path %>
+<% end %>

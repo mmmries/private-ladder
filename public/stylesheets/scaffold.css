@@ -1,0 +1,117 @@
+body { background-color: #fff; color: #333; }
+
+body, p, ol, ul, td {
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size:   13px;
+  line-height: 18px;
+}
+
+pre {
+  background-color: #eee;
+  padding: 10px;
+  font-size: 11px;
+}
+
+a:link{
+  color: rgb(0,0,0);
+  text-decoration: underline;
+  -webkit-transition: color 1s ease-in;
+  -moz-transition: color 1s ease-in;
+  -o-transition: color 1s ease-in;
+  transition: color 1s ease-in;
+}
+a:visited{
+  color: rgb(0,0,0);
+  text-decoration: underline;
+}
+a:active{
+  color: rgb(0,0,0);
+  text-decoration: underline;
+}
+
+a:hover{
+  text-decoration: none;
+  color:#333;
+  -webkit-transition: color 1s ease-in;
+  -moz-transition: color 1s ease-in;
+  -o-transition: color 1s ease-in;
+  transition: color 1s ease-in;
+}
+
+
+a.light:link{
+  text-decoration: underline;
+  color: rgb(255,255,255);
+  -webkit-transition: color 1s ease-in;
+  -moz-transition: color 1s ease-in;
+  -o-transition: color 1s ease-in;
+  transition: color 1s ease-in;
+}
+
+a.light:visited{
+  text-decoration: underline;
+  color: rgb(255,255,255);
+}
+
+a.light:active{
+  text-decoration: underline;
+  color: rgb(255,255,255);
+}
+a.light:hover{
+  text-decoration: none;
+  color:#333;
+  -webkit-transition: color 1s ease-in;
+  -moz-transition: color 1s ease-in;
+  -o-transition: color 1s ease-in;
+  transition: color 1s ease-in;
+}
+
+.magnify:hover {
+  font-size: 125%;
+  -webkit-transition: font-size 500ms ease-in;
+  -mox-transition: font-size 500ms ease-in;
+  -o-transition: font-size 500ms ease-in;
+  transition: font-size 500ms ease-in;
+}
+.magnify{
+  padding-right: 5px;
+}
+
+div.field, div.actions {
+  margin-bottom: 10px;
+}
+
+#notice {
+  color: green;
+}
+
+.field_with_errors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+}
+
+#error_explanation {
+  width: 450px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 0;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+
+#error_explanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  margin-bottom: 0px;
+  background-color: #c00;
+  color: #fff;
+}
+
+#error_explanation ul li {
+  font-size: 12px;
+  list-style: square;
+}

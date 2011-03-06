@@ -1,0 +1,23 @@
+<h1>Listing games</h1>
+
+<table>
+  <tr>
+    <th>League</th>
+    <th></th>
+    <% if is_admin? then %>
+      <th></th>
+    <% end %>
+  </tr>
+
+<% @games.each do |game| %>
+  <tr>
+    <td><%= game.league_id %></td>
+    <td><%= link_to 'Show', game %></td>
+    <% if is_admin? then %>
+      <td><%= link_to 'Destroy', game, :confirm => 'Are you sure?', :method => :delete %></td>
+    <% end %>
+  </tr>
+<% end %>
+</table>
+
+<br />

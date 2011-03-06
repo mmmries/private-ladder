@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>League:</b>
+  <%= @game.league.name %>
+</p>
+
+<p>
+  <b>Date:</b>
+  <%= @game.created_at.to_s(:long) %>(<%= time_ago_in_words(@game.created_at) %> ago)
+</p>
+
+<% @game.participants.each do | part | %>
+  <p>
+    <b><%= part.player.name %>:</b>
+    <%= part.result %> (<%= part.points %>)
+  </p>
+<% end %>
+
+<%= link_to 'Back', games_path %>

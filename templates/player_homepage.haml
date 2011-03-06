@@ -1,4 +1,0 @@
-%h1= "#{player.name}"
-%ul#league-list
-  - player.get_league_list.each do |league|
-    %li= partial(:player_league, :locals => {:league => league})

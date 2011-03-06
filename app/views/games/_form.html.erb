@@ -1,0 +1,38 @@
+<%= form_for(@game) do |f| %>
+  <% if @game.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@game.errors.count, "error") %> prohibited this game from being saved:</h2>
+
+      <ul>
+      <% @game.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= f.hidden_field :league_id %>
+
+  <div class="field">
+    <label for="game_winner">Winner:</label><br />
+    <input type="hidden" name="game[participants][1][result]" value="win" />
+    <select id="game_winner" name="game[participants][1][player_id]">
+      <% @players.each do |player| %>
+        <option value="<%= player["_id"] %>"><%= player.name %></option>
+      <% end %>
+    </select>
+  </div>
+  
+  <div class="field">
+    <label for="game_loser">Loser:</label><br />
+    <input type="hidden" name="game[participants][2][result]" value="lose" />
+    <select id="game_loser" name="game[participants][2][player_id]">
+      <% @players.each do |player| %>
+        <option value="<%= player["_id"] %>"><%= player.name %></option>
+      <% end %>
+    </select>
+  </div>
+  
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
