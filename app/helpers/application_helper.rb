@@ -17,4 +17,16 @@ module ApplicationHelper
     end
     get_login.is_admin?
   end
+  
+  def add_game_path(league)
+    "/games/new?game[league_id]=#{league["_id"]}"
+  end
+  
+  def join_league_path(league)
+    "/leagues/#{league["_id"]}/join"
+  end
+  
+  def leave_league_path(league)
+    "/leagues/#{league["_id"]}/leave"
+  end
 end

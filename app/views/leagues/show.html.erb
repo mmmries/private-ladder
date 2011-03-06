@@ -6,6 +6,12 @@
   <%= @league.description %>
 </p>
 
+<% unless get_login.nil? then %>
+  <p>
+    <%= link_to "report game", add_game_path(@league) %>
+  </p>
+<% end %>
+
 <% @league.get_players_in_point_order.each do |player| %>
   <%= render :partial => "player", :locals => { :player => player } %>
 <% end %>

@@ -10,11 +10,28 @@
       </ul>
     </div>
   <% end %>
+  <%= f.hidden_field :league_id %>
 
   <div class="field">
-    <%= f.label :league_id %><br />
-    <%= f.text_field :league_id %>
+    <label for="game_winner">Winner:</label><br />
+    <input type="hidden" name="game[participants][1][result]" value="win" />
+    <select id="game_winner" name="game[participants][1][player_id]">
+      <% @players.each do |player| %>
+        <option value="<%= player["_id"] %>"><%= player.name %></option>
+      <% end %>
+    </select>
   </div>
+  
+  <div class="field">
+    <label for="game_loser">Loser:</label><br />
+    <input type="hidden" name="game[participants][2][result]" value="lose" />
+    <select id="game_loser" name="game[participants][2][player_id]">
+      <% @players.each do |player| %>
+        <option value="<%= player["_id"] %>"><%= player.name %></option>
+      <% end %>
+    </select>
+  </div>
+  
   <div class="actions">
     <%= f.submit %>
   </div>

@@ -50,8 +50,13 @@ a img {
 
 #logo {
 	float: left;
-	background: url(/images/img03.jpg) no-repeat left top;
+	/* background: url(/images/icon-ladder.png) no-repeat left top; */
 	padding-left: 70px;
+}
+
+img.logo {
+	float:left;
+	height: 130px;
 }
 
 #logo h1, #logo p {

@@ -4,20 +4,20 @@
   <tr>
     <th>League</th>
     <th></th>
-    <th></th>
-    <th></th>
+    <% if is_admin? then %>
+      <th></th>
+    <% end %>
   </tr>
 
 <% @games.each do |game| %>
   <tr>
     <td><%= game.league_id %></td>
     <td><%= link_to 'Show', game %></td>
-    <td><%= link_to 'Edit', edit_game_path(game) %></td>
-    <td><%= link_to 'Destroy', game, :confirm => 'Are you sure?', :method => :delete %></td>
+    <% if is_admin? then %>
+      <td><%= link_to 'Destroy', game, :confirm => 'Are you sure?', :method => :delete %></td>
+    <% end %>
   </tr>
 <% end %>
 </table>
 
 <br />
-
-<%= link_to 'New Game', new_game_path %>

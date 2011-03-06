@@ -9,4 +9,7 @@ class Participant < Hash
     errors.add :result, "result must be win, loss or draw" if ["win", "loss", "draw"].index(result).nil?
   end
   
+  def player
+    @player ||= Player.find(player_id)
+  end
 end

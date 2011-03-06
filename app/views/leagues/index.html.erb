@@ -18,11 +18,11 @@
     <td><%= link_to league.name, league %></td>
     <% if !get_login.nil?  then %>
       <% if get_login.in_league?(league["_id"]) then %>
-        <td><%= link_to "report game", new_game_path %></td>
-        <td><%= link_to "leave league", "/leagues/#{league["_id"]}/leave" %></td>
+        <td><%= link_to "report game", add_game_path(league) %></td>
+        <td><%= link_to "leave league", leave_league_path(league) %></td>
       <% else %>
         <td></td>
-        <td><%= link_to "join league", "/leagues/#{league["_id"]}/join" %></td>
+        <td><%= link_to "join league", join_league_path(league) %></td>
       <% end %>
     <% end %>
     <% if is_admin? then %>

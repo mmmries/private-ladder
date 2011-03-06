@@ -22,6 +22,10 @@ class Game < CouchRest::Model::Base
     }
   "
   
+  def league
+    @league ||= League.find(league_id)
+  end
+  
   def validate
     errors.add :participants, "a game must consist of at least 2 players" if participants.count < 2
     errors.add :participants, "the game must have one winner" if participants.inject(0){ |sum, p| if p.result == "win" then sum + 1 else sum end } > 1

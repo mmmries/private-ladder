@@ -2,6 +2,10 @@ class GamesController < ApplicationController
   # GET /games
   # GET /games.xml
   def index
+    unless is_admin? then
+      raise 'only admins can access the game list'  
+    end
+    
     @games = Game.all
 
     respond_to do |format|
@@ -24,8 +28,8 @@ class GamesController < ApplicationController
   # GET /games/new
   # GET /games/new.xml
   def new
-    @game = Game.new
-
+    @game = Game.new(params[:game])
+    @players = Player.by_leagues(:key => @game.league_id)
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @game }
@@ -36,10 +40,14 @@ class GamesController < ApplicationController
   # POST /games.xml
   def create
     @game = Game.new(params[:game])
-
+    @game.participants.each do | part |
+      part.points = 1.0 if part.result == "win"
+      part.points = -0.5 if part.result == "lose"
+      part.points ||= 0.0
+    end
     respond_to do |format|
       if @game.save
-        format.html { redirect_to(@game, :notice => 'Game was successfully created.') }
+        format.html { redirect_to(@game.league, :notice => 'Game was successfully created.') }
         format.xml  { render :xml => @game, :status => :created, :location => @game }
       else
         format.html { render :action => "new" }
@@ -51,6 +59,10 @@ class GamesController < ApplicationController
   # DELETE /games/1
   # DELETE /games/1.xml
   def destroy
+    unless is_admin? then
+      raise 'only admins can delete games'
+    end
+    
     @game = Game.find(params[:id])
     @game.destroy
 
