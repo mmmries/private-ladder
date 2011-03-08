@@ -79,4 +79,28 @@ class Player < CouchRest::Model::Base
   def gravatar_img( size = 40 )
     "<img src='http://www.gravatar.com/avatar/#{hash}?s=#{size}' class='gravatar' />"
   end
+  
+  def get_leagues_in_point_order
+    if @leagues_in_point_order.nil? then
+      ##get a list of how many points this player has in each of their leagues
+      tmp = Game.by_league_points :reduce => true, :group_level => 2, :startkey => [self["_id"], nil], :endkey => [self["_id"], {}]
+      league_point_map = tmp["rows"].to_hash_values { |row|  row["key"].last }
+      
+      ##get a list of all the leagues this player is in
+      league_list = leagues.map{ |lid| League.find(lid) }
+      
+      ##match up points with players
+      league_list.each do |l|
+        if league_point_map[l["_id"]].nil? then
+          l.score = 0
+        else
+          l.score = league_point_map[l["_id"]]["value"]
+        end
+      end
+      
+      ##sort the players by reverse score
+      @leagues_in_point_order = league_list.sort{ |l1, l2|  l2.score <=> l1.score }
+    end
+    @leagues_in_point_order
+  end
 end

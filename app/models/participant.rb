@@ -1,6 +1,9 @@
 class Participant < Hash
   include CouchRest::Model::CastedModel
   
+  #note this is note a value stored in couchdb, it is a convenience function
+  attr_accessor :player
+  
   property :player_id, String
   property :result, String
   property :points, Float

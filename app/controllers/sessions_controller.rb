@@ -19,7 +19,8 @@ class SessionsController < ApplicationController
       end
     else
       session[:login] = res.first["_id"]
-      redirect_to :controller => "leagues", :action => "index"
+      params[:id] = res.first["_id"]
+      redirect_to "/players/#{res.first["_id"]}"
     end
   end
 

@@ -1,8 +1,15 @@
 <p id="notice"><%= notice %></p>
 
+<h2><%= @player.name %></h2>
 <p>
-  <b>Name:</b>
-  <%= @player.name %>
+  <%= @player.gravatar_img(128).html_safe %>
 </p>
+
+<h3>Leagues</h3>
+<% @player.get_leagues_in_point_order.each do |league| %>
+  <p>
+    <b><%= league.name %></b> <%= league.score %> points
+  </p>
+<% end %>
 
 <%= link_to 'Back', players_path %>

@@ -6,12 +6,28 @@ class Game < CouchRest::Model::Base
   property :league_id, String
   property :participants, [Participant]
   
-  view_by :points, :map => "
+  view_by :player_points, :map => "
     function(doc) {
       if ( doc['couchrest-type'] == 'Game' && doc['participants'] ) {
         for( var i in doc['participants'] ) {
           var part = doc['participants'][i];
-          emit([doc['league_id'], part['player_id']], part['points']);
+          emit([doc['league_id'], part['player_id'], doc['created_at']], part['points']);
+        }
+      }
+    }
+  ",
+  :reduce => "
+    function(keys, values, rereduce) {
+      return sum(values);
+    }
+  "
+  
+  view_by :league_points, :map => "
+    function(doc) {
+      if ( doc['couchrest-type'] == 'Game' && doc['participants'] ) {
+        for( var i in doc['participants'] ) {
+          var part = doc['participants'][i];
+          emit([part['player_id'], doc['league_id'], doc['created_at']], part['points']);
         }
       }
     }

@@ -18,6 +18,13 @@ module ApplicationHelper
     get_login.is_admin?
   end
   
+  def is_me?(player)
+    if get_login.nil? then
+      return false
+    end
+    get_login["_id"] == player["_id"]
+  end
+  
   def add_game_path(league)
     "/games/new?game[league_id]=#{league["_id"]}"
   end

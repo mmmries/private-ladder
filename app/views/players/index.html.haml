@@ -1,4 +1,4 @@
-%h1= "Listing players"
+%h1= "Player List"
 %table
   -@players.each do |player|
     %tr
@@ -6,8 +6,9 @@
       %td
         %strong= player.name
       %td= link_to 'Show', player, :class => "magnify"
-      - if is_admin?
+      - if is_admin? or is_me?(player)
         %td= link_to 'Edit', edit_player_path(player), :class => "magnify"
+      - if is_admin?
         %td= link_to 'Destroy', player, :confirm => 'Are you sure?', :method => :delete, :class => "magnify"
 
 .help= "Don't see an avatar next to your name?  Check out gravatar.com to check out how you can make an avatar that follows your email address."
