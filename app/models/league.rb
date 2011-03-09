@@ -37,7 +37,7 @@ class League < CouchRest::Model::Base
   
   def get_recent_games(limit = 10)
     if @recent_games.nil? then
-      @recent_games = Game.by_player_points :startkey => [self["_id"], {}], :endkey => [self["_id"], nil], :limit => limit, :descending => true
+      @recent_games = Game.by_league_date :startkey => [self["_id"], {}], :endkey => [self["_id"], nil], :limit => limit, :descending => true
       
       player_lookup = {}
       @recent_games.each do |game|

@@ -38,6 +38,14 @@ class Game < CouchRest::Model::Base
     }
   "
   
+  view_by :league_date, :map => "
+    function(doc) {
+      if ( doc['couchrest-type'] == 'Game' ) {
+        emit([doc['league_id'], doc['created_at']], true);
+      }
+    }
+  "
+  
   def league
     @league ||= League.find(league_id)
   end
