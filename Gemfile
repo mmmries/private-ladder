@@ -6,7 +6,7 @@ gem 'rails', '3.0.1'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'haml'
-gem 'couchrest_model', '>= 1.0.0', :git => "https://github.com/couchrest/couchrest_model.git"
+gem 'couchrest_model', '>= 1.0.0'
 gem 'jquery-rails', '>= 0.2.6'
 gem 'memcache-client', '>= 1.8.5'
 
