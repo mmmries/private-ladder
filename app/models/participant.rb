@@ -1,12 +1,11 @@
-class Participant < Hash
-  include CouchRest::Model::CastedModel
+class Participant
+  include Mongoid::Document
   
-  #note this is note a value stored in couchdb, it is a convenience function
-  attr_accessor :player
+  embedded_in :game, :inverse_of => :participants
   
-  property :player_id, String
-  property :result, String
-  property :points, Float
+  embeds_one :player
+  field :result, :type => String
+  field :points, :type => Float
   
   def validate
     errors.add :result, "result must be win, loss or draw" if ["win", "loss", "draw"].index(result).nil?

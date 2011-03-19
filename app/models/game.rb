@@ -1,50 +1,49 @@
-class Game < CouchRest::Model::Base
-  #select the database to be used
-  use_database CouchServer.default_database
+class Game
+  include Mongoid::Document
+  include Mongoid::Timestamps
   
-  timestamps!
-  property :league_id, String
-  property :participants, [Participant]
+  references_one :league
+  embeds_many :participants
   
-  view_by :player_points, :map => "
-    function(doc) {
-      if ( doc['couchrest-type'] == 'Game' && doc['participants'] ) {
-        for( var i in doc['participants'] ) {
-          var part = doc['participants'][i];
-          emit([doc['league_id'], part['player_id'], doc['created_at']], part['points']);
-        }
-      }
-    }
-  ",
-  :reduce => "
-    function(keys, values, rereduce) {
-      return sum(values);
-    }
-  "
+  #view_by :player_points, :map => "
+  #  function(doc) {
+  #    if ( doc['couchrest-type'] == 'Game' && doc['participants'] ) {
+  #      for( var i in doc['participants'] ) {
+  #        var part = doc['participants'][i];
+  #        emit([doc['league_id'], part['player_id'], doc['created_at']], part['points']);
+  #      }
+  #    }
+  #  }
+  #",
+  #:reduce => "
+  #  function(keys, values, rereduce) {
+  #    return sum(values);
+  #  }
+  #"
   
-  view_by :league_points, :map => "
-    function(doc) {
-      if ( doc['couchrest-type'] == 'Game' && doc['participants'] ) {
-        for( var i in doc['participants'] ) {
-          var part = doc['participants'][i];
-          emit([part['player_id'], doc['league_id'], doc['created_at']], part['points']);
-        }
-      }
-    }
-  ",
-  :reduce => "
-    function(keys, values, rereduce) {
-      return sum(values);
-    }
-  "
+  #view_by :league_points, :map => "
+  #  function(doc) {
+  #    if ( doc['couchrest-type'] == 'Game' && doc['participants'] ) {
+  #      for( var i in doc['participants'] ) {
+  #        var part = doc['participants'][i];
+  #        emit([part['player_id'], doc['league_id'], doc['created_at']], part['points']);
+  #      }
+  #    }
+  #  }
+  #",
+  #:reduce => "
+  #  function(keys, values, rereduce) {
+  #    return sum(values);
+  #  }
+  #"
   
-  view_by :league_date, :map => "
-    function(doc) {
-      if ( doc['couchrest-type'] == 'Game' ) {
-        emit([doc['league_id'], doc['created_at']], true);
-      }
-    }
-  "
+  #view_by :league_date, :map => "
+  #  function(doc) {
+  #    if ( doc['couchrest-type'] == 'Game' ) {
+  #      emit([doc['league_id'], doc['created_at']], true);
+  #    }
+  #  }
+  #"
   
   def league
     @league ||= League.find(league_id)

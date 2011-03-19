@@ -6,9 +6,15 @@ gem 'rails', '3.0.1'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'haml'
-gem 'couchrest_model', '>= 1.0.0'
 gem 'jquery-rails', '>= 0.2.6'
-gem 'memcache-client', '>= 1.8.5'
+gem 'mongo'
+gem 'mongo_ext'
+gem 'mongoid', :git => "https://github.com/mongoid/mongoid.git"
+gem 'bson_ext'
+gem "mongoid_session_store", ">= 1.1"
+
+gem "couchrest"
+gem "couchrest_model"
 
 # Use unicorn as the web server
 # gem 'unicorn'
