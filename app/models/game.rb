@@ -2,7 +2,7 @@ class Game
   include Mongoid::Document
   include Mongoid::Timestamps
   
-  references_one :league
+  field :league_id, :type => BSON::ObjectId
   embeds_many :participants
   
   #view_by :player_points, :map => "
