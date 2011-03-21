@@ -7,7 +7,14 @@ class League
   field :name, :type => String
   field :description, :type => String
   
-  #view_by :name
+  ## score helper function
+  def score=(score)
+    @score = score
+  end
+  
+  def score
+    @score ||= 0
+  end
   
   #def get_players_in_point_order
   #  if @players_in_point_order.nil? then
