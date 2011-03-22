@@ -29,7 +29,7 @@ class GamesController < ApplicationController
   # GET /games/new.xml
   def new
     @game = Game.new(params[:game])
-    @players = Player.by_leagues(:key => @game.league_id)
+    @players = Player.any_of(:league_ids => @game.league_id)
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @game }
@@ -44,12 +44,14 @@ class GamesController < ApplicationController
       part.points = 1.0 if part.result == "win"
       part.points = -0.5 if part.result == "lose"
       part.points ||= 0.0
+      part.player = Player.find(part.player.id)
     end
     respond_to do |format|
       if @game.save
         format.html { redirect_to(@game.league, :notice => 'Game was successfully created.') }
         format.xml  { render :xml => @game, :status => :created, :location => @game }
       else
+        @players = Player.any_of(:league_ids => @game.league_id)
         format.html { render :action => "new" }
         format.xml  { render :xml => @game.errors, :status => :unprocessable_entity }
       end

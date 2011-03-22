@@ -2,7 +2,7 @@ class LeaguesController < ApplicationController
   # GET /leagues
   # GET /leagues.xml
   def index
-    @leagues = League.all
+    @leagues = League.asc(:name)
 
     respond_to do |format|
       format.html # index.html.erb

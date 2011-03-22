@@ -5,6 +5,8 @@ class Game
   field :league_id, :type => BSON::ObjectId
   embeds_many :participants
   
+  validates :participants, :unique_participants => true
+  
   def self.league_points_by_player(league_id)
     @@lpbp ||= {}
     if @@lpbp[league_id].nil? then
@@ -29,8 +31,12 @@ MAP
 REDUCE
     
       opts = { :out => {"inline" => true}, :raw => true, :query => {:league_id => league_id}}
-    
-      @@lpbp[league_id] = collection.map_reduce(map, reduce, opts)["results"]
+      tmp = collection.map_reduce(map, reduce, opts)["results"]
+      hash = {}
+      tmp.each do|t|
+        hash[t["_id"]] = t["value"]["points"]
+      end
+      @@lpbp[league_id] = hash
     end
     @@lpbp[league_id]
   end
@@ -42,7 +48,9 @@ REDUCE
         function(){
           for( var i in this.participants ) {
             var part = this.participants[i];
-            emit(part.player._id, {points: part.points});
+            if ( part.player._id == '#{player_id}') {
+              emit(this.league_id, {points: part.points});
+            }
           }
         }
 MAP
@@ -58,25 +66,18 @@ MAP
         }
 REDUCE
     
-      opts = { :out => {"inline" => true}, :raw => true, :query => {:league_id => league_id}}     
+      opts = { :out => {"inline" => true}, :raw => true, :query => {"participants.player._id" => player_id}}
+      tmp = collection.map_reduce(map, reduce, opts)["results"]
+      hash = {}
+      tmp.each do|t|
+        hash[t["_id"]] = t["value"]["points"]
+      end
+      @@ppbl[player_id] = hash
     end
-    @ppbl[player_id]
+    @@ppbl[player_id]
   end
   
   def league
     @league ||= League.first(:conditions => {:id => league_id})
-  end
-  
-  def validate
-    errors.add :participants, "a game must consist of at least 2 players" if participants.count < 2
-    errors.add :participants, "the game must have one winner" if participants.inject(0){ |sum, p| if p.result == "win" then sum + 1 else sum end } > 1
-    player_ids = {}
-    participants.each do |part|
-      if player_ids[part.player.id].nil? then
-        player_ids[part.player.id] = true
-      else
-        errors.add :participants, "player #{part.player.name} cannot be is in the game multiple times"
-      end
-    end
   end
 end

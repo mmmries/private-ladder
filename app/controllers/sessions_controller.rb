@@ -11,16 +11,16 @@ class SessionsController < ApplicationController
   # POST /sessions #login
   def create
     @session = Session.new(params[:session])
-    res = Player.by_name :key => @session.username
-    if res.nil? or res.first.password != @session.password then
+    res = Player.first( :conditions => {:name => @session.username})
+    if res.nil? or res.password != @session.password then
       @session.errors.add :username, "the username/password supplied does not match any known user"
       respond_to do |format|
         format.html { render :action => "new" }
       end
     else
-      session[:login] = res.first["_id"]
-      params[:id] = res.first["_id"]
-      redirect_to "/players/#{res.first["_id"]}"
+      session[:login] = res.id
+      params[:id] = res.id
+      redirect_to "/players/#{res.id}"
     end
   end
 

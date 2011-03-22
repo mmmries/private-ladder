@@ -21,23 +21,7 @@ class Player
   
   ##custom functions
   def in_league?(league_id)
-    !leagues.index(league_id).nil?
-  end
-  
-  def get_league_list
-    if @league_list.nil? then
-      @league_list = leagues.map do |lid|
-        l = League.find(lid)
-        tmp = DB.view('Game/by_points', :key => [lid, self["_id"]])
-        if tmp["rows"].count == 1 then
-          l.score = tmp["rows"].first["value"]
-        else
-          l.score = 0
-        end
-        l
-      end
-    end
-    @league_list
+    !league_ids.index(league_id).nil?
   end
   
   def is_admin?
@@ -52,6 +36,7 @@ class Player
     "<img src='http://www.gravatar.com/avatar/#{hash}?s=#{size}' class='gravatar' />"
   end
   
+  ##score helper function
   def score=(score)
     @score = score
   end
@@ -60,27 +45,23 @@ class Player
     @score ||= 0
   end
   
-  #def get_leagues_in_point_order
-  #  if @leagues_in_point_order.nil? then
-  #    ##get a list of how many points this player has in each of their leagues
-  #    tmp = Game.by_league_points :reduce => true, :group_level => 2, :startkey => [self["_id"], nil], :endkey => [self["_id"], {}]
-  #    league_point_map = tmp["rows"].to_hash_values { |row|  row["key"].last }
-  #    
-  #    ##get a list of all the leagues this player is in
-  #    league_list = leagues.map{ |lid| League.find(lid) }
-  #    
-  #    ##match up points with players
-  #    league_list.each do |l|
-  #      if league_point_map[l["_id"]].nil? then
-  #        l.score = 0
-  #      else
-  #        l.score = league_point_map[l["_id"]]["value"]
-  #      end
-  #    end
-  #    
-  #    ##sort the players by reverse score
-  #    @leagues_in_point_order = league_list.sort{ |l1, l2|  l2.score <=> l1.score }
-  #  end
-  #  @leagues_in_point_order
-  #end
+  def get_leagues_in_point_order
+    if @leagues_in_point_order.nil? then
+      ##get a list of how many points this player has in each of their leagues
+      tmp = Game.player_points_by_league(id)
+      
+      ##get a list of all the leagues this player is in
+      league_list = League.any_in(:_id => league_ids)
+      
+      ##match up points with players
+      league_list = league_list.map do |l|
+        l.score = tmp[l.id] unless tmp[l.id].nil?
+        l
+      end
+      
+      ##sort the players by reverse score
+      @leagues_in_point_order = league_list.sort{ |l1, l2|  l2.score <=> l1.score }
+    end
+    @leagues_in_point_order
+  end
 end

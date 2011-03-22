@@ -2,7 +2,7 @@ module ApplicationHelper
   
   def get_login
     if @user_login.nil? then
-      @user_login = Player.find(session[:login])
+      @user_login = Player.find(session[:login]) unless session[:login].nil?
     end
     @user_login
   end

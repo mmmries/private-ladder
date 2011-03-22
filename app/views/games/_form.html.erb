@@ -15,7 +15,7 @@
   <div class="field">
     <label for="game_winner">Winner:</label><br />
     <input type="hidden" name="game[participants][1][result]" value="win" />
-    <select id="game_winner" name="game[participants][1][player_id]">
+    <select id="game_winner" name="game[participants][1][player][_id]">
       <% @players.each do |player| %>
         <option value="<%= player["_id"] %>"><%= player.name %></option>
       <% end %>
@@ -25,7 +25,7 @@
   <div class="field">
     <label for="game_loser">Loser:</label><br />
     <input type="hidden" name="game[participants][2][result]" value="lose" />
-    <select id="game_loser" name="game[participants][2][player_id]">
+    <select id="game_loser" name="game[participants][2][player][_id]">
       <% @players.each do |player| %>
         <option value="<%= player["_id"] %>"><%= player.name %></option>
       <% end %>
