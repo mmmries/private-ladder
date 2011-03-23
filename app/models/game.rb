@@ -5,7 +5,17 @@ class Game
   field :league_id, :type => BSON::ObjectId
   embeds_many :participants
   
-  validates :participants, :unique_participants => true
+  validate :validate_participants
+  
+  def validate_participants
+    errors[:participants] << "a game must consist of at least 2 players" if participants.size < 2
+    errors[:participants] << "the game must have one winner" if participants.inject(0){ |sum, p| if p.result == "win" then sum + 1 else sum end } != 1
+    player_ids = {}
+    participants.each do |part|
+      errors[:participants] << "player #{part.player.name} cannot be in the game multiple times" unless player_ids[part.player.id].nil?
+      player_ids[part.player.id] = true
+    end
+  end
   
   def self.league_points_by_player(league_id)
     @@lpbp ||= {}
@@ -29,8 +39,8 @@ MAP
          return { points: total};
         }
 REDUCE
-    
-      opts = { :out => {"inline" => true}, :raw => true, :query => {:league_id => league_id}}
+
+      opts = { :out => {"inline" => true}, :raw => true, :query => {:league_id => league_id} }
       tmp = collection.map_reduce(map, reduce, opts)["results"]
       hash = {}
       tmp.each do|t|
