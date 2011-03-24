@@ -123,7 +123,25 @@ img.logo {
 
 #content {
 	float: left;
-	width: 570px;
+	width: 800px;
+}
+/* structure of the content area */
+.left-column{
+	float:left;
+	clear:left;
+	max-width: 400px;
+	padding-right: 50px;
+	height: 100%;
+}
+.right-column{
+	float:right;
+	clear:right;
+	max-width: 400px;
+	padding-left: 50px;
+	height: 100%;
+}
+.headline{
+	clear:both;
 }
 
 .post {

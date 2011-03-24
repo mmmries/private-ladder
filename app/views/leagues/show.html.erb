@@ -1,30 +1,31 @@
 <p id="notice"><%= notice %></p>
-
-<h1><%= @league.name %></h1>
-<p>
-  <b>Description:</b>
-  <%= @league.description %>
-</p>
-
-<% unless get_login.nil? then %>
+<div class="headline">
+  <h1><%= @league.name %></h1>
   <p>
-    <%= link_to "report game", add_game_path(@league) %>
+    <b>Description:</b>
+    <%= @league.description %>
   </p>
-<% end %>
-
-<h3>players</h3>
-<% @league.get_players_in_point_order.each do |player| %>
-  <%= render :partial => "player", :locals => { :player => player } %>
-<% end %>
-
-<h3>recent games</h3>
-<% @league.get_recent_games.each do |game| %>
-<p>
-  <%= game.created_at.to_s(:long) %> (<%= time_ago_in_words(game.created_at) %> ago)<br/>
-  <% game.participants.each do |participant| %>
-    <%= participant.player.name %> <%= participant.result %><br/>
+  
+  <% unless get_login.nil? then %>
+    <p>
+      <%= link_to "report game", add_game_path(@league) %>
+    </p>
   <% end %>
-</p>
-<% end %>
-
-<%= link_to 'Back', leagues_path %>
+</div>
+<div class="left-column">  
+  <h3>players</h3>
+  <% @league.get_players_in_point_order.each do |player| %>
+    <%= render :partial => "player", :locals => { :player => player } %>
+  <% end %>
+</div>
+<div class="right-column">
+  <h3>recent games</h3>
+  <% @league.get_recent_games.each do |game| %>
+  <p>
+    <%= game.created_at.to_s(:long) %> (<%= time_ago_in_words(game.created_at) %> ago)<br/>
+    <% game.participants.each do |participant| %>
+      <%= participant.player.name %> <%= participant.result %><br/>
+    <% end %>
+  </p>
+  <% end %>
+</div>
