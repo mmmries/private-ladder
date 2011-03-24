@@ -5,6 +5,9 @@ class Game
   field :league_id, :type => BSON::ObjectId
   embeds_many :participants
   
+  index :league_id
+  index "participants.player._id"
+  
   validate :validate_participants
   
   def validate_participants
@@ -76,6 +79,7 @@ REDUCE
     tmp.each do|t|
       hash[t["_id"]] = t["value"]["points"]
     end
+    return hash
   end
   
   def league
