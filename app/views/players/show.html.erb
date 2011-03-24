@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h2><%= @player.name %></h2>
+<h2 id="player-name"><%= @player.name %></h2>
 <p>
   <%= @player.gravatar_img(128).html_safe %>
 </p>
@@ -13,3 +13,16 @@
 <% end %>
 
 <%= link_to 'Back', players_path %>
+
+<script type="text/javascript">
+  $(function(){
+    player = new Player;
+    player.bind('change:name', function(model, name){
+      $('#player-name').text(name);
+    });
+    
+    $('#player-name').click(function(){
+      player.promptName();
+    });
+  });
+</script>
