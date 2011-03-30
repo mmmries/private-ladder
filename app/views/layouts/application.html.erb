@@ -4,9 +4,12 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <title>Shoot the Ladder</title>
   <%= stylesheet_link_tag :all %>
+  <%= javascript_include_tag "jquery" %>
+  <%= javascript_include_tag "jquery-ui" %>
+  <%= javascript_include_tag "rails" %>
   <%= javascript_include_tag "underscore-min" %>
   <%= javascript_include_tag "backbone-min" %>
-  <%= javascript_include_tag :defaults %>
+  <%= javascript_include_tag "application" %>
   <%= csrf_meta_tag %>
 </head>
 <body>

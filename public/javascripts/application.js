@@ -3,9 +3,38 @@
 
 
 var Player = Backbone.Model.extend({
-   promptName: function(){
-        var new_name = prompt("Please enter the new name: ");
-        this.set({name: new_name});
-   }
+    
 });
 
+var League = Backbone.Model.extend({
+    
+});
+
+var LeagueList = Backbone.Collection.extend({
+    'model':League,
+    'fetch':function(){
+        
+    }
+});
+
+window.PlayerView = Backbone.View.extend({
+   tagName: "div",
+   
+   template: _.template($("#player-template").html()),
+   events: { },
+   
+   initialize: function(){
+    _.bindAll(this, 'render', 'close');
+    this.model.bind('change', this.render);
+   },
+   
+   render: function() {
+    $(this.el).html( this.template(this.model.toJSON()) );
+    this.setContent();
+    return this;
+   }
+   
+   setContent: function() {
+    
+   }
+});

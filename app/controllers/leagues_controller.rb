@@ -2,11 +2,17 @@ class LeaguesController < ApplicationController
   # GET /leagues
   # GET /leagues.xml
   def index
-    @leagues = League.asc(:name)
+    if params[:player_id] then
+      @player = Player.find(params[:player_id])
+      @leagues = @player.get_leagues_in_point_order
+    else
+      @leagues = League.asc(:name)
+    end
 
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @leagues }
+      format.json { render :json => @leagues }
     end
   end
 

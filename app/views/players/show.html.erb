@@ -1,17 +1,19 @@
 <p id="notice"><%= notice %></p>
-
-<h2 id="player-name"><%= @player.name %></h2>
-<p>
-  <%= @player.gravatar_img(128).html_safe %>
-</p>
-
-<h3>Leagues</h3>
-<% @player.get_leagues_in_point_order.each do |league| %>
+<div class="player">
+  <h2 class="player-name"><%= @player.name %></h2>
   <p>
-    <b><%= league.name %></b> <%= league.score %> points
+    <%= @player.gravatar_img(128).html_safe %>
   </p>
-<% end %>
+</div>
 
+<div class="league-list">
+  <h3>Leagues</h3>
+  <% @player.get_leagues_in_point_order.each do |league| %>
+    <p>
+      <b><%= league.name %></b> <%= league.score %> points
+    </p>
+  <% end %>
+</div>
 <%= link_to 'Back', players_path %>
 
 <script type="text/javascript">
@@ -21,8 +23,6 @@
       $('#player-name').text(name);
     });
     
-    $('#player-name').click(function(){
-      player.promptName();
-    });
+    var league_list = new LeagueList();
   });
 </script>
