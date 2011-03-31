@@ -14,6 +14,9 @@ Ladder::Application.routes.draw do
   resources :sessions
   match 'login' => 'sessions#new', :as => :login
   delete 'logout' => 'sessions#destroy', :as => :logout
+  
+  ##special 1-page app
+  match 'index' => 'index#index', :as => :backbone
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
