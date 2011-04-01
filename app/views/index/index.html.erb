@@ -3,6 +3,33 @@
 $(function(){
   player_list = new PlayerList();
   
+  window.AppView = Backbone.View.extend({
+    el: $('#app'),
+    
+    initialize: function(){
+      var that = this;
+      player_list.fetch({
+       'success': function(collection, response){
+          that.addAll();
+        }
+      });
+    },
+    
+    addOne: function(player) {
+      var view = new PlayerView({model: player});
+      this.$("#player-list").append(view.render().el);
+    },
+    
+    addAll: function(){
+      player_list.each(this.addOne);
+    }
+  });
+  
+  window.app = new AppView();
 });
 </script>
-
+<div id="app">
+  <div id="player-list">
+    
+  </div>
+</div>

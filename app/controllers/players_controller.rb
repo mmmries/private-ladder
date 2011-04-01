@@ -3,10 +3,13 @@ class PlayersController < ApplicationController
   # GET /players.xml
   def index
     @players = Player.asc(:name)
+    
+    puts @players.to_json( :methods => [:gravatar] )
 
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @players }
+      format.json { render :json => @players.to_json( :methods => [:hash]) }
     end
   end
 

@@ -1,7 +1,32 @@
 <script type="text/javascript">
-  
+$(function(){
+  window.PlayerView = Backbone.View.extend({
+    template: _.template($('#player-template').html()),
+    
+    initialize: function(){
+      _.bindAll(this, 'changeName');
+      
+      this.model.bind('change:name', this.changeName);
+    },
+    
+    changeName: function(){
+      this.$('.name').text(this.model.get("name"));
+    },
+    
+    render: function(){
+      $(this.el).html(this.template(this.model.toJSON()));
+      this.setContent();
+      return this;
+    },
+    
+    setContent: function(){
+      this.$('.name').text(this.model.get("name"));
+      this.$('.avatar').append( $('<img />', {src: "http://www.gravatar.com/avatar/"+this.model.get('hash')+"?s=40"}) );
+    }
+  });
+});
 </script>
 <div id="player-template" style="display:none">
   <div class="name"></div>
-  <div class="gravatar">gravatar</div>
+  <div class="avatar"></div>
 </div>

@@ -32,10 +32,6 @@ class Player
     @hash ||= Digest::MD5.hexdigest(self["email"].downcase.chomp)
   end
   
-  def gravatar_img( size = 40 )
-    "<img src='http://www.gravatar.com/avatar/#{hash}?s=#{size}' class='gravatar' />"
-  end
-  
   ##score helper function
   def score=(score)
     @score = score
