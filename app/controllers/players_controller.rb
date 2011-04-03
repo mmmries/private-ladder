@@ -8,8 +8,7 @@ class PlayersController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @players }
-      format.json { render :json => @players.to_json( :methods => [:hash]) }
+      format.json { render :json => @players.to_json( :methods => [:hash], :except => [:password] ) }
     end
   end
 
@@ -20,7 +19,7 @@ class PlayersController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @player }
+      format.json { render :json => @players.to_json( :methods => [:hash], :except => [:password] ) }
     end
   end
 
@@ -34,7 +33,6 @@ class PlayersController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.xml  { render :xml => @player }
     end
   end
 
@@ -53,7 +51,6 @@ class PlayersController < ApplicationController
         format.html { redirect_to(login_path, :notice => 'You have successfully registered. Please login below.') }
       else
         format.html { render :action => "new" }
-        format.xml  { render :xml => @player.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -66,10 +63,8 @@ class PlayersController < ApplicationController
     respond_to do |format|
       if @player.update_attributes(params[:player])
         format.html { redirect_to(@player, :notice => 'Player was successfully updated.') }
-        format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
-        format.xml  { render :xml => @player.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -82,7 +77,6 @@ class PlayersController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to(players_url) }
-      format.xml  { head :ok }
     end
   end
 end
