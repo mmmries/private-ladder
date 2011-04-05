@@ -111,131 +111,47 @@ img.logo {
 }
 
 /* Page */
+#page-wrapper{
+	position: relative;
+	clear: both;
+	float: left;
+	width: 100%;
+	overflow: hidden;
+	overflow-x: hidden;
+	overflow-y: hidden;
+}
+
 
 #page {
-	width: 900px;
-	min-height: 500px;
-	margin: 0px auto;
-	padding: 30px 0px;
+float: left;
+width: 200%;
+margin-left: -200px;
+position: relative;
+right: 100%;
 }
 
 /* Content */
-
-#content {
+#content-wrapper{
 	float: left;
-	width: 800px;
+	width: 60%;
+	position: relative;
+	left: 55%;
+	padding-bottom: 1em
 }
-/* structure of the content area */
-.left-column{
-	float:left;
-	clear:left;
-	max-width: 400px;
-	padding-right: 50px;
-	height: 100%;
-}
-.right-column{
-	float:right;
-	clear:right;
-	max-width: 400px;
-	padding-left: 50px;
-	height: 100%;
-}
-.headline{
-	clear:both;
-}
-
-.post {
-	margin: 0px 0px 30px 0px;
-}
-
-.post .title {
-	margin: 0px;
-	padding: 0px 0px 5px 0px;
-	border-bottom: #BFC9AE solid 1px;
-	color: #232F01;
-}
-
-.post .title a {
-	color: #232F01;
-}
-
-.post .entry {
-}
-
-.post .meta {
-	font-weight: bold;
-}
-
-.post .byline {
-	margin: 0px;
+#content {
+	margin: 0 15px 0 215px;
+	overflow: hidden;
 }
 
 /* Sidebar */
 
 #sidebar {
 	float: right;
-	width: 300px;
+	width: 23%;
+	position: relative;
+	left: 12%;
 }
 
-#sidebar-bgtop {
-	height: 3px;
-}
-
-#sidebar-bgbtm {
-	height: 3px;
-}
-
-#sidebar-content {
-	padding: 20px;
-}
-
-#sidebar ul {
-	margin: 0px;
-	padding: 0px;
-	list-style: none;
-}
-
-#sidebar li ul {
-	margin-bottom: 1.8em;
-	padding-left: 20px;
-	list-style: none;
-}
-
-#sidebar h2 {
-	padding: 4px 20px;
-	background: #699C4D;
-	font-size: 1.2em;
-	color: #FFFFFF;
-}
-
-#sidebar a {
-	text-decoration: none;
-	color: #232F01;
-}
-
-#sidebar a:hover {
-	text-decoration: underline;
-}
-
-/* Search */
-
-#search {
-}
-
-#search form {
-	margin-bottom: 1.8em;
-	padding: 0px;
-}
-
-#search fieldset {
-	margin: 0px;
-	padding: 0px;
-	border: none;
-}
-
-#search #s {
-	width: 160px;
-}
 
 /* Footer */
 
@@ -270,4 +186,9 @@ img.logo {
 	clear:left;
 	padding-bottom: 7px;
 	min-height: 50px;
+}
+
+.small-arrow{
+	height:16px;
+	width: 16px;
 }

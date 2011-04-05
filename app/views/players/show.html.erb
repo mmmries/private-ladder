@@ -8,7 +8,7 @@
 <h3>Leagues</h3>
 <% @player.get_leagues_in_point_order.each do |league| %>
   <p>
-    <b><%= league.name %></b> <%= league.score %> points
+    <b><%= league.name %></b> <%= league.score %> points <a href="<%= league_path(league) %>"><img src="/img/arrow-right.png" class="small-arrow" /></a>
   </p>
 <% end %>
 
