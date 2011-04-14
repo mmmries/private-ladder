@@ -110,8 +110,8 @@ img.logo {
 #menu .active a {
 }
 
-/* Page */
-#page-wrapper{
+/* two column pattern */
+.two-col-wrapper{
 	position: relative;
 	clear: both;
 	float: left;
@@ -121,37 +121,28 @@ img.logo {
 	overflow-y: hidden;
 }
 
-
-#page {
-float: left;
-width: 200%;
-margin-left: -200px;
-position: relative;
-right: 100%;
-}
-
-/* Content */
-#content-wrapper{
+.left-col {
 	float: left;
 	width: 60%;
 	position: relative;
-	left: 55%;
-	padding-bottom: 1em
-}
-#content {
-	margin: 0 15px 0 215px;
+	left: 5%;
+	padding-bottom: 1em;
 	overflow: hidden;
 }
 
-/* Sidebar */
-
-#sidebar {
+.right-col {
 	float: right;
 	width: 23%;
 	position: relative;
-	left: 12%;
+	right: 5%;
 }
 
+/* page */
+#page-wrapper {
+	clear: both;
+	width: 900px;
+	margin: 0px auto 30px auto;
+}
 
 /* Footer */
 
