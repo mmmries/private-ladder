@@ -13,9 +13,6 @@ gem 'mongoid', :git => "https://github.com/mongoid/mongoid.git"
 gem 'bson_ext'
 gem "mongoid_session_store", ">= 1.1"
 
-gem "couchrest"
-gem "couchrest_model"
-
 # Use unicorn as the web server
 # gem 'unicorn'
 
@@ -37,3 +34,13 @@ gem "couchrest_model"
 # group :development, :test do
 #   gem 'webrat'
 # end
+group :development, :test do
+  gem 'capybara'
+  gem 'cucumber'
+  gem 'cucumber-rails'
+  gem 'database_cleaner'
+  gem 'rspec'
+  gem 'rspec-rails'
+  gem 'shoulda'
+end
+

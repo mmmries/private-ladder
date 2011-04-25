@@ -1,8 +1,9 @@
 require 'test_helper'
 
 class GameTest < ActiveSupport::TestCase
-  # Replace this with your real tests.
-  test "the truth" do
-    assert true
+  test "game attributes not null" do
+    game = Game.new
+    assert game.invalid?
+    assert
   end
 end

@@ -25,9 +25,8 @@ Here is a list of gems used and a suggested development environment.
 
 Uses:
 
-+   CouchDB for storage
-+   CouchRest + Model for talking to CouchDB ( https://github.com/couchrest/couchrest, https://github.com/couchrest/couchrest_model )
-    + Currently couchrest_model must be built from source since the rubygems.org version has a bad dependency on activesupport-2.3.5
++   MongoDB for storage
++   Mongoid for talking to MongoDB
 +   Rails for a web interface layer ( do you really need a URL? )
 +   HAML + SCSS for rendering templates ( http://haml-lang.com/, http://sass-lang.com/ )
 +   Pony for sending emails ( http://adam.heroku.com/past/2008/11/2/pony_the_express_way_to_send_email_from_ruby/ )
@@ -35,9 +34,10 @@ Uses:
 My Installation:
 
 + ubuntu 10.10
++ sudo apt-get install libxslt-dev libxml2-dev
 + rvm
-+ rvm install ruby-1.9.2
-+ rvm use ruby-1.9.2
++ rvm install ruby-1.9.2-p180
++ rvm use ruby-1.9.2-p180
 + rvm gemset create ladder
 + rvm gemset use ladder
 + gem install rspec bundler
